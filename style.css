@@ -1,0 +1,45 @@
+#canvas {
+  background-color: rgb(152, 160, 152);
+}
+
+body, html {
+  margin: 0
+}
+
+ol {list-style: none;}
+
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* border: 1px solid red; */
+  margin-left: 10px;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.toolbar> svg{
+  height: 1.5em;
+  width: 1.5em;
+  margin: 10px 10px;
+}
+ol {
+  border: 1px solid black;
+  padding-left: 10px;
+}
+ol> li{
+  width: 30px;
+  height: 30px;
+  border: 2px solid rebeccapurple;
+  margin: 16px 0;
+  border-radius: 16px;
+}
+#black {background-color: black;}
+#blue {background-color: blue;}
+#red {background-color: red;}
+#green {background-color: green;}
