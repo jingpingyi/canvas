@@ -1,5 +1,5 @@
 #canvas {
-  background-color: rgb(152, 160, 152);
+  background-color: #fff;
 }
 
 body, html {
@@ -29,17 +29,31 @@ ol {list-style: none;}
   margin: 10px 10px;
 }
 ol {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding-left: 10px;
 }
 ol> li{
   width: 30px;
   height: 30px;
-  border: 2px solid rebeccapurple;
+  border: 2px solid rgba(220,220,220,0.5);
   margin: 16px 0;
-  border-radius: 16px;
+  border-radius: 100%;
 }
-#black {background-color: black;}
-#blue {background-color: blue;}
-#red {background-color: red;}
-#green {background-color: green;}
+#black {background-color: black; transition: 0.3s;}
+#blue {background-color: #1A8CFF; transition: 0.3s;}
+#red {background-color: #FF1A40; transition: 0.3s;}
+#green {background-color: #2BD965; transition: 0.3s;}
+#pencil { transition: 0.3s;fill:black;}
+#pencil.active{
+  fill: red;
+  transform: scale(1.5);
+}
+#eraser { transition: 0.3s;fill:black;}
+#eraser.active{
+  fill: red;
+  transform: scale(1.5);
+}
+#black.active {transform: scale(1.2);}
+#blue.active {transform: scale(1.2);}
+#red.active {transform: scale(1.2);}
+#green.active {transform: scale(1.2);}

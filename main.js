@@ -8,6 +8,10 @@ var using = false
 var eraserEnable = false
 var pencilEnable = true
 var pencilColor = "red"
+var pencilLineWidth = {}
+var pencilLineIndex = 2
+var eraserLineWidth = {}
+var eraserLineIndex = 2
 
 listenToUser(canvas)
 function drawLine(lastPoint, newPoint, pencilColor) {
@@ -36,13 +40,24 @@ eraser.onclick = function () {
     eraserEnable = true
     pencilEnable = false
     context.globalCompositeOperation = 'destination-out'
+    if (eraser.classList.contains("active")) {
+        //弹出橡皮擦选项
+    } else {
+        eraser.classList.add('active')
+        pencil.classList.remove('active')
+    }
 
 }
 pencil.onclick = function () {
     context.globalCompositeOperation = 'source-over'
-
     eraserEnable = false
     pencilEnable = true
+    if (pencil.classList.contains('active')) {
+        //弹出铅笔选项
+    } else {
+        pencil.classList.add('active')
+        eraser.classList.remove('active')
+    }
 }
 function autoSetCanvasSize() {
     setCanvasSize()
@@ -55,7 +70,7 @@ function setCanvasSize() {
     var pageHeight = document.documentElement.clientHeight
     canvas.width = pageWidth
     canvas.height = pageHeight
-} 
+}
 function listenToUser(canvas) {
     if (document.body.ontouchstart !== undefined) {
         //是触屏设备
@@ -114,6 +129,9 @@ function listenToUser(canvas) {
                     lastPoint = newPoint
                 } else {
                     erasure(x, y)
+                    context.lineWidth = 12
+                    drawLine(lastPoint, newPoint, pencilColor)
+                    lastPoint = newPoint
                 }
             }
 
@@ -124,19 +142,50 @@ function listenToUser(canvas) {
     }
 
 }
-black.onclick = function(a){
-    var color = window.getComputedStyle(a.target).backgroundColor
-    pencilColor = color
+black.onclick = function (a) {
+    if (pencilEnable) {
+        var color = window.getComputedStyle(a.target).backgroundColor
+        pencilColor = color
+        black.classList.add('active')
+        blue.classList.remove('active')
+        green.classList.remove('active')
+        red.classList.remove('active')
+    }
+
+
 }
-blue.onclick = function(a){
-    var color = window.getComputedStyle(a.target).backgroundColor
-    pencilColor = color
+blue.onclick = function (a) {
+    if (pencilEnable) {
+        var color = window.getComputedStyle(a.target).backgroundColor
+        pencilColor = color
+        blue.classList.add('active')
+        green.classList.remove('active')
+        black.classList.remove('active')
+        red.classList.remove('active')
+    }
+
 }
-red.onclick = function(a){
-    var color = window.getComputedStyle(a.target).backgroundColor
-    pencilColor = color
+red.onclick = function (a) {
+    if (pencilEnable) {
+        var color = window.getComputedStyle(a.target).backgroundColor
+        pencilColor = color
+        red.classList.add('active')
+        green.classList.remove('active')
+        black.classList.remove('active')
+        blue.classList.remove('active')
+    }
+
+
 }
-green.onclick = function(a){
-    var color = window.getComputedStyle(a.target).backgroundColor
-    pencilColor = color
+green.onclick = function (a) {
+    if (pencilEnable) {
+        var color = window.getComputedStyle(a.target).backgroundColor
+        pencilColor = color
+        green.classList.add('active')
+        black.classList.remove('active')
+        blue.classList.remove('active')
+        red.classList.remove('active')
+
+    }
+
 }
