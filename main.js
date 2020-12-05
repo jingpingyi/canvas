@@ -1,7 +1,7 @@
 var canvas = document.getElementById('canvas')
 var context = canvas.getContext('2d')
 var clear = document.getElementById('clear')
-var $ = function(id){return document.getElementById(id)}
+var $ = function (id) { return document.getElementById(id) }
 autoSetCanvasSize()
 
 var lastPoint, newPoint
@@ -25,12 +25,12 @@ function drawLine(lastPoint, newPoint) {
 function drawPoint(x, y) {
     context.fillStyle = pencilColor
     context.beginPath()
-    context.arc(x, y, pencilLineWidth/2, 0, Math.PI * 2)
+    context.arc(x, y, pencilLineWidth / 2, 0, Math.PI * 2)
     context.fill()
 }
 function erasure(x, y) {
     context.beginPath()
-    context.arc(x, y, eraserLineWidth/2, 0, Math.PI * 2)
+    context.arc(x, y, eraserLineWidth / 2, 0, Math.PI * 2)
     context.fill()
 
 }
@@ -61,6 +61,8 @@ function autoSetCanvasSize() {
     window.onresize = function () {
         setCanvasSize()
     }
+    context.fillStyle = "#fff"
+    context.fillRect(0, 0, canvas.width, canvas.height)
 }
 function setCanvasSize() {
     var pageWidth = document.documentElement.clientWidth
@@ -71,6 +73,8 @@ function setCanvasSize() {
 function listenToUser(canvas) {
     if (document.body.ontouchstart !== undefined) {
         //是触屏设备
+        context.fillStyle = "#fff"
+        context.fillRect(0, 0, canvas.width, canvas.height)
         canvas.ontouchstart = function (a) {
             var x = a.touches[0].clientX
             var y = a.touches[0].clientY
@@ -104,12 +108,12 @@ function listenToUser(canvas) {
         canvas.ontouchend = function (a) {
             using = false
         }
-        clear.ontouchstart = function(){
+        clear.ontouchstart = function () {
             clear.classList.add('active')
-            context.clearRect(0,0,canvas.width,canvas.height)
-        
+            context.clearRect(0, 0, canvas.width, canvas.height)
+
         }
-        clear.ontouchend = function(){
+        clear.ontouchend = function () {
             clear.classList.remove('active')
         }
     } else {
@@ -153,83 +157,88 @@ function listenToUser(canvas) {
         canvas.onmouseup = function (a) {
             using = false
         }
-        
-        clear.onmousedown = function(){
+
+        clear.onmousedown = function () {
             clear.classList.add('active')
-            context.clearRect(0,0,canvas.width,canvas.height)
-        
+            context.clearRect(0, 0, canvas.width, canvas.height)
+
         }
-        clear.onmouseup = function(){
+        clear.onmouseup = function () {
             clear.classList.remove('active')
         }
     }
 
 }
 $('black').onclick = function (a) {
-        var color = window.getComputedStyle(a.target).backgroundColor
-        pencilColor = color
-        black.classList.add('active')
-        blue.classList.remove('active')
-        green.classList.remove('active')
-        red.classList.remove('active')
+    var color = window.getComputedStyle(a.target).backgroundColor
+    pencilColor = color
+    black.classList.add('active')
+    blue.classList.remove('active')
+    green.classList.remove('active')
+    red.classList.remove('active')
 
 
 }
 $('blue').onclick = function (a) {
-        var color = window.getComputedStyle(a.target).backgroundColor
-        pencilColor = color
-        blue.classList.add('active')
-        green.classList.remove('active')
-        black.classList.remove('active')
-        red.classList.remove('active')
+    var color = window.getComputedStyle(a.target).backgroundColor
+    pencilColor = color
+    blue.classList.add('active')
+    green.classList.remove('active')
+    black.classList.remove('active')
+    red.classList.remove('active')
 
 }
 $('red').onclick = function (a) {
-        var color = window.getComputedStyle(a.target).backgroundColor
-        pencilColor = color
-        red.classList.add('active')
-        green.classList.remove('active')
-        black.classList.remove('active')
-        blue.classList.remove('active')
+    var color = window.getComputedStyle(a.target).backgroundColor
+    pencilColor = color
+    red.classList.add('active')
+    green.classList.remove('active')
+    black.classList.remove('active')
+    blue.classList.remove('active')
 
 
 }
 $('green').onclick = function (a) {
-        var color = window.getComputedStyle(a.target).backgroundColor
-        pencilColor = color
-        green.classList.add('active')
-        black.classList.remove('active')
-        blue.classList.remove('active')
-        red.classList.remove('active')
-
-
+    var color = window.getComputedStyle(a.target).backgroundColor
+    pencilColor = color
+    green.classList.add('active')
+    black.classList.remove('active')
+    blue.classList.remove('active')
+    red.classList.remove('active')
 }
 var clear = document.getElementById('clear')
 
 
-$('line-1').onclick = function(){
+$('line-1').onclick = function () {
     $('pix').innerText = '2'
     pencilLineWidth = 2
 }
-$('line-2').onclick = function(){
+$('line-2').onclick = function () {
     pencilLineWidth = 4
     $('pix').innerText = '4'
     $('line').className = 'line-2'
 }
-$('line-3').onclick = function(){
+$('line-3').onclick = function () {
     pencilLineWidth = 6
     $('pix').innerText = '6'
     $('line').className = 'line-3'
 }
-$('line-4').onclick = function(){
+$('line-4').onclick = function () {
     pencilLineWidth = 8
     $('pix').innerText = '8'
     $('line').className = 'line-4'
 }
-$('line').onclick = function(){
+$('line').onclick = function () {
     $('lines').classList.toggle('active')
 }
 
+
+$('download').onclick = function () {
+    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+
+    $('download').setAttribute("href", image);
+
+}
 
 
 
