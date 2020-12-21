@@ -229,9 +229,9 @@ $('line-4').onclick = function () {
     $('pix').innerText = '8'
     $('line').className = 'line-4'
 }
-// $('line').onclick = function () {
-//     $('lines').classList.toggle('active')
-// }
+$('line').onclick = function () {
+    $('lines').classList.toggle('active')
+}
 
 
 $('download').onclick = function () {
@@ -245,10 +245,10 @@ $('download').onclick = function () {
 // document.addEventListener('click',function(e){
 //     $('lines').style.display = 'none'
 // })
-$('line').addEventListener('click',function(e){
-    $('lines').classList.toggle('active')
-    e.preventDefault()
-},false)
+// $('line').addEventListener('click',function(e){
+//     $('lines').classList.toggle('active')
+//     e.preventDefault()
+// },false)
 
 //禁止页面左右滑动
 // var xStart, xEnd, yStart, yEnd;
